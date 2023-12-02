@@ -21,7 +21,7 @@ board={1:" ", 2:" ", 3:" ",
 
 turn="x"
 game_end=False
-mode="singlePlayer"
+mode="None"
 
 def changeModeToSingleplayer():
     global mode
@@ -212,7 +212,7 @@ def play(event):
         clicked=1
     else:
         clicked=int(clicked)
-    if(key["text"]==" "):
+    if(key["text"]==" " and (mode=='singlePlayer' or mode=='multiPlayer')):
         if(turn=="x"):
             board[clicked]=turn
             if (checkForWin(turn)):
@@ -241,6 +241,9 @@ def play(event):
             drawLabel=Label(frame1,text="Game Draw",bg="grey",font=("Arial",26),width=16)
             drawLabel.grid(row=0, column=0, columnspan=3)
         print(board) #to know the status of board
+    else:
+        for i in range(len(button)):
+            button[i]["text"] = " "
 
 #change mode options (multiplayer,singleplayer)
 spButton=Button(optionFrame,text="Single Player",width=13,height=1,
